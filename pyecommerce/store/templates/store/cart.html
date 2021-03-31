@@ -36,6 +36,7 @@
         <div style="flex: 1"><strong>Price</strong></div>
         <div style="flex: 2"><strong>Quantity</strong></div>
         <div style="flex: 1"><strong>Total</strong></div>
+         <div style="flex: 1"><strong>Size Option</strong></div>
 		<div style="flex: 1"><strong>Action</strong></div>
       </div>
       {% for item in items %}
@@ -52,12 +53,20 @@
               data-product="{{item.product.id}}"
               name="onchangeQuantity"
               type="number"
-              min="0"
+              min="1"
               value="{{item.quantity}}"
             />
           </div>
         </div>
         <div style="flex: 1"><p>{{item.get_total}}vnd</p></div>
+         <div style="flex:1">
+          <input type="radio" id="Small" name="gender" value="Small">
+          <label for="Small">Small</label><br>
+          <input type="radio" id="Medium" name="gender" value="Medium">
+          <label for="Medium">Medium</label><br>
+          <input type="radio" id="Large" name="gender" value="Large">
+          <label for="Large">Large</label>
+        </div>
         <div style="flex: 1">
           <a data-action="remove" data-product="{{item.product.id}}" class="btn btn-outline-dark" name="ondeleteOrderItem" >Remove</a>
         </div>

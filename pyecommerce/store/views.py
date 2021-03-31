@@ -23,6 +23,9 @@ def store(request):
     context= {'products': products, 'cartItems':cartItems}
     return render(request, "store/store.html", context)
 
+def detailproduct(request):
+    context={}
+    return render(request, 'store/detailproduct.html', context)
 
 def checkout(request):
     if request.user.is_authenticated:
@@ -104,13 +107,15 @@ def updateItem(request):
         orderItem.quantity = (orderItem.quantity + 1)
     elif action == 'remove':
         orderItem.delete()
-        return redirect('/')
+        return redirect('cart')
     elif action == 'change':
         quantity = data['quantity']
         orderItem.quantity = quantity
-        return redirect('/cart')
+        if quantity == 0:
+            orderItem.delete()
+            return redirect('cart')
     orderItem.save()
-    if orderItem.quantity <= 0:
+    if orderItem.quantity == 0:
         orderItem.delete()
-        return redirect('/cart')
+        return redirect('cart')
     return JsonResponse('Item was added', safe=False)
