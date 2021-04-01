@@ -127,3 +127,17 @@ function deleteOrderItem(productId, action){
         console.log('error: ' + error)
     });
 }
+
+// update size option
+var checkedSmall = document.getElementById('Small')
+console.log(checkedSmall);
+
+for (i = 0; i< checkedSmall.length; i++){
+    checkedSmall[i].addEventListener('checked', function(){
+        if(checkedSmall[i].checked){
+            console.log(checkedSmall[i].value);
+        }else{
+            console.log("uncheck");
+        }
+    });
+}
