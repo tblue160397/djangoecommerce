@@ -54,9 +54,9 @@ class Comment(models.Model):
     content = models.TextField()
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
+    created = models.DateTimeField(auto_now_add=True, null=True)
+    enable = models.BooleanField(default=True)
 
-    def __str__(self):
-        return self.content
 
 
 class Order(models.Model):

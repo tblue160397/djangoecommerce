@@ -23,10 +23,6 @@ def store(request):
     context= {'products': products, 'cartItems':cartItems}
     return render(request, "store/store.html", context)
 
-def detailproduct(request):
-    context={}
-    return render(request, 'store/detailproduct.html', context)
-
 def checkout(request):
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -118,4 +114,37 @@ def updateItem(request):
     if orderItem.quantity == 0:
         orderItem.delete()
         return redirect('cart')
+    return JsonResponse('Item was added', safe=False)
+
+
+def detailproduct(request, pk):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, status='Pending')
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        cartItems = order['get_cart_items']
+    product = Product.objects.get(id=pk)
+    comments = product.comment_set.all()
+    print(comments)
+    context = {'product': product, 'cartItems': cartItems, 'comments': comments}
+    return render(request, 'store/detailproduct.html', context)
+
+
+def addcomment(request):
+    method = request.method
+    customer = request.user.customer
+    if method == 'POST':
+        data = json.loads(request.body)
+        productid = data['productId']
+        action = data['action']
+        content = data['content']
+        print(data)
+        print(method)
+        product = Product.objects.get(id=productid)
+        comment = Comment.objects.create(product=product, customer=customer, content=content)
+        print(comment)
     return JsonResponse('Item was added', safe=False)
