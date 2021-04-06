@@ -70,6 +70,17 @@ def logoutForCustomer(request):
     logout(request)
     return redirect('/')
 
+def customerprofile(request):
+    if request.user.is_authenticated:
+        user = request.user
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, status='Pending')
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        return redirect("login")
+    context= {'user': user,'cartItems':cartItems}
+    return render(request, 'store/registration/profile.html', context)
 
 def cart(request):
     if request.user.is_authenticated:
@@ -115,6 +126,27 @@ def updateItem(request):
         orderItem.delete()
         return redirect('cart')
     return JsonResponse('Item was added', safe=False)
+
+
+def updateEmail(request):
+    data = json.loads(request.body);
+    changed_value = data['changedvalue']
+    action = data['action']
+    user = request.user
+    if user.is_authenticated:
+        customer = user.customer
+        if action == "updateEM":
+            user.email = changed_value
+            user.save()
+        if action == "updatePh":
+            customer.phone = changed_value
+            customer.save()
+        if action == "updateAdd":
+            customer.address = changed_value
+            customer.save()
+    else:
+        return redirect("login")
+    return JsonResponse('Email was updated', safe=False)
 
 
 def detailproduct(request, pk):
