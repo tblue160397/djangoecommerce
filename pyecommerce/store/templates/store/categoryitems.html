@@ -1,15 +1,16 @@
 {% extends 'store/main.html' %} {% load static %} {% block content %}
+<h2>{{categoryname}}</h2>
 <div class="row">
-  {% for product in products %}
+  {% for items in categoryitems %}
   <div class="col-lg-4">
-    <img class="thumbnail" src="{{product.image.url}}" />
+    <img class="thumbnail" src="{{items.image.url}}" />
     <div class="box-element product">
-      <h6><strong>{{product.name}}</strong></h6>
+      <h6><strong>{{items.name}}</strong></h6>
       <hr />
 
       <button
         data-action="add"
-        data-product="{{product.id}}"
+        data-product="{{items.id}}"
         class="btn btn-outline-secondary add-btn update-cart"
       >
         Add to Cart
@@ -18,12 +19,12 @@
         class="btn btn-outline-success"
         name="detailproduct"
         data-action="viewproduct"
-        data-product="{{product.id}}"
-        href="{% url 'detailproduct' pk=product.id %}"
+        data-product="{{items.id}}"
+        href="{% url 'detailproduct' pk=items.id %}"
         >View</a
       >
       <h4 style="display: inline-block; float: right">
-        <strong>{{product.price|floatformat:2}}</strong>
+        <strong>{{items.price|floatformat:2}}</strong>
       </h4>
     </div>
   </div>

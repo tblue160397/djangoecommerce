@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" charset="UTF-8">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
@@ -21,7 +20,21 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{% url 'store' %}">Store <span class="sr-only">(current)</span></a>
               </li>
-
+              <li class="nav-item active">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Category
+                      </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" data-action="filtercategory"
+                      href="{% url 'category' name='Short' %}">Short</a>
+                      <a class="dropdown-item"
+                      href="{% url 'category' name='Tank Top' %}">Tank Top</a>
+                      <a class="dropdown-item" href="{% url 'category' name='T Shirt' %}">T Shirt</a>
+                      <a class="dropdown-item" href="{% url 'category' name='Under Wear' %}">Under Wear</a>
+                    </div>
+                  </div>
+              </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
                 {% if user.is_authenticated %}

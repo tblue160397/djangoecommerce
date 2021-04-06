@@ -166,6 +166,22 @@ def detailproduct(request, pk):
     return render(request, 'store/detailproduct.html', context)
 
 
+def category(request, name):
+    print(name)
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, status='Pending')
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        cartItems = order['get_cart_items']
+    categoryitems = Product.objects.filter(category=name)
+    print(categoryitems)
+    context = {'categoryitems': categoryitems, 'cartItems': cartItems, 'categoryname': name}
+    return render(request, 'store/categoryitems.html', context)
+
 def addcomment(request):
     method = request.method
     customer = request.user.customer
