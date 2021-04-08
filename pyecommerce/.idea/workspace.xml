@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a9e9f313-8b89-4a43-a28c-b7e4afdc68f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyecommerce/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyecommerce/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/templates/store/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/templates/store/store.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/store.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/templates/store/registration/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/registration/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,11 +45,12 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\TaiLieuHocTap\pyecommerce\store\templates\store\registration" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\TaiLieuHocTap\pyecommerce\static\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\TaiLieuHocTap\djangoecommerce\pyecommerce\static\js" />
+      <recent name="E:\TaiLieuHocTap\pyecommerce\store\templates\store\registration" />
     </key>
   </component>
   <component name="RunDashboard">

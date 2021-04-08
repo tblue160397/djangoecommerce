@@ -6,10 +6,12 @@ from django.dispatch import receiver
 
 # Create your models here.
 
+
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     phone = models.CharField(max_length=11, null=True, blank=True)
+    dob = models.DateField(null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
@@ -68,7 +70,7 @@ class Order(models.Model):
     )
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    status = models.CharField(max_length=200, null=True, choices=STATUS)
+    status = models.CharField(max_length=200, null=True, choices=STATUS, default='Pending')
 
     def __str__(self):
         return str(self.id)
@@ -76,14 +78,32 @@ class Order(models.Model):
     @property
     def get_cart_total(self):
         orderitems = self.orderitem_set.all()
-        total = sum([item.get_total for item in orderitems])
-        return total
+        totalprice = sum([item.get_total for item in orderitems])
+        return totalprice
 
     @property
     def get_cart_items(self):
         orderitems = self.orderitem_set.all()
-        total = sum([item.quantity for item in orderitems])
-        return total
+        totalitems = sum([item.quantity for item in orderitems])
+        return totalitems
+
+
+class Payment(models.Model):
+    CATEGORYPAYMENT = (
+        ('COD', 'COD'),
+        ('VNPAY', 'VNPAY'),
+    )
+    ispay = models.BooleanField(default=False)
+    transid = models.CharField(max_length=200, null=True, blank=True)
+    category = models.CharField(max_length=200, null=True, choices=CATEGORYPAYMENT)
+    order = models.ForeignKey(Order, null=True, on_delete=models.SET_NULL)
+    pay_date = models.DateTimeField(auto_now_add=True, null=True)
+    customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
+    @property
+    def get_total_price(self):
+        total_price = self.order.get_cart_total
+        return total_price
+
 
 class OrderItem(models.Model):
     OPTION = (

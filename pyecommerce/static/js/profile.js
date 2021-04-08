@@ -4,6 +4,8 @@ var phoneinput = document.getElementById('phoneinput');
 
 var addressinput = document.getElementById('addressinput');
 
+var dobinput = document.getElementById('dobinput');
+
 var savebtn = document.getElementById("savebtn");
 
 
@@ -22,39 +24,57 @@ emailinput.addEventListener('change', function(){
     savebtn.disabled = false;
 });
 
+if(dobinput != null){
+    dobinput.addEventListener('change',function(){
+        savebtn.disabled = false;
+        console.log(dobinput.value)
+    })
+}
+
 phoneinput.addEventListener('change', function(){
     savebtn.disabled = false;
 });
 addressinput.addEventListener('change', function(){
+    console.log(savebtn.disabled)
     savebtn.disabled = false;
 });
- function updateCustomerInf(phone, email, address){
+ function updateCustomerInf(phone, email, address, dob){
+     var emailvalue = "";
+     var phonevalue = "";
+     var addressvalue = "";
+     var dobvalue = "";
+     console.log(dob);
      var emailinputvalue = emailinput.value;
      var phoneinputvalue = phoneinput.value;
      var addressinputvalue = addressinput.value;
+     if(dobinput != null){
+        var dobinputvalue = dobinput.value;
+        dobvalue = dobinputvalue;
+     }else{
+        var dobconvert = moment(dob).format('YYYY-MM-DD');
+        dobvalue = dobconvert;
+     }
     if(email !== emailinputvalue){
-        let action = "updateEM"; 
-        updateInf(emailinputvalue, action);
+       emailvalue = emailinputvalue
     }
     else{
-        console.log("Email is not changed")
+        emailvalue = email;
     }
     if(phone !== phoneinputvalue){
-        let action = "updatePh";
-        updateInf(phoneinputvalue, action);
+        phonevalue = phoneinputvalue
     }
     else{
-        console.log("Phone is not changed");
+        phonevalue = phone;
     }
     if(address !== addressinputvalue){
-        let action = "updateAdd";
-        updateInf(addressinputvalue, action);
+        addressvalue = addressinputvalue
     }
     else{
-        console.log("Address is not changed");
+        addressvalue = address;
     }
+    updateInf(emailvalue,dobvalue,phonevalue,addressvalue);
  }
- function updateInf(inputvalue, action){
+ function updateInf(email,dob,phone,address){
     var url = "/update_customer_inf/";
 
     fetch(url, {
@@ -63,7 +83,7 @@ addressinput.addEventListener('change', function(){
           "Content-Type": "application/json",
           "X-CSRFToken": csrftoken,
         },
-        body: JSON.stringify({ changedvalue: inputvalue, action: action}),
+        body: JSON.stringify({ email: email, dob: dob, phone: phone, address:address}),
       })
         .then((response) => {
           console.log(response);

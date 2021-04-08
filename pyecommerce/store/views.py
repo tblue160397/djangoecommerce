@@ -77,9 +77,11 @@ def customerprofile(request):
         order, created = Order.objects.get_or_create(customer=customer, status='Pending')
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
+        payments = Payment.objects.filter(ispay=True, customer=customer)
+        total_spend_money = sum(payment.get_total_price for payment in payments)
     else:
         return redirect("login")
-    context= {'user': user,'cartItems':cartItems}
+    context = {'user': user, 'cartItems': cartItems,'total_spend_money': total_spend_money}
     return render(request, 'store/registration/profile.html', context)
 
 def cart(request):
@@ -130,23 +132,22 @@ def updateItem(request):
 
 def updateEmail(request):
     data = json.loads(request.body);
-    changed_value = data['changedvalue']
-    action = data['action']
+    email = data['email']
+    dob = data['dob']
+    phone = data['phone']
+    address = data['address']
     user = request.user
     if user.is_authenticated:
+        print(email, dob, phone, address)
         customer = user.customer
-        if action == "updateEM":
-            user.email = changed_value
-            user.save()
-        if action == "updatePh":
-            customer.phone = changed_value
-            customer.save()
-        if action == "updateAdd":
-            customer.address = changed_value
-            customer.save()
+        user.save()
+        user.email = email
+        customer.phone = phone
+        customer.address = address
+        customer.save()
     else:
         return redirect("login")
-    return JsonResponse('Email was updated', safe=False)
+    return JsonResponse('Update customer info', safe=False)
 
 
 def detailproduct(request, pk):
