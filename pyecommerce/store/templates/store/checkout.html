@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
   <div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-4">
 			<div class="box-element" id="form-wrapper">
 				<form id="form">
 					<div id="user-info">
@@ -25,7 +25,7 @@
 							<input class="form-control" type="text" name="city" placeholder="City..">
 						</div>
 						<div class="form-field">
-							<input class="form-control" type="datetime-local" name="state" placeholder="Order Date..">
+							<input class="form-control" type="datetime" name="state" placeholder="Order Date..">
 						</div>
 					</div>
 
@@ -41,18 +41,28 @@
 
 		</div>
 
-		<div class="col-lg-6">
+		<div class="col-lg-8">
 			<div class="box-element">
 				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
 				<hr>
 				<h3>Order Summary</h3>
 				<hr>
+				<div class="cart-row">
+					<div style="flex: 2"></div>
+					<div style="flex: 2"><strong>Item</strong></div>
+					<div style="flex: 1"><strong>Price</strong></div>
+					<div style="flex: 1"><strong>Quantity</strong></div>
+					<div style="flex: 1"><strong>Total</strong></div>
+					<div style="flex: 1"><strong>Size</strong></div>
+				</div>
 				{% for item in items %}
 					<div class="cart-row">
 						<div style="flex:2"><img class="row-image" src="{{item.product.image.url}}"></div>
 						<div style="flex:2"><p>{{item.product.name}}</p></div>
 						<div style="flex:1"><p>{{item.product.price}}</p></div>
 						<div style="flex:1"><p>{{item.quantity}}</p></div>
+						<div style="flex:1;">{{item.get_total}}  VND</div>
+						<div style="flex:1;">{{item.option}}</div>
 					</div>
 				{% endfor %}
 				<h5>Items:  {{order.get_cart_items}}</h5>

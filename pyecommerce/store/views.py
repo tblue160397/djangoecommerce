@@ -123,6 +123,9 @@ def updateItem(request):
         if quantity == 0:
             orderItem.delete()
             return redirect('cart')
+    elif action == 'changeoption':
+        option = data['option']
+        orderItem.option = option
     orderItem.save()
     if orderItem.quantity == 0:
         orderItem.delete()

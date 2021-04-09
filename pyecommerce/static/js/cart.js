@@ -141,30 +141,25 @@ function deleteOrderItem(productId, action) {
 }
 
 // update size option
-var checkedSmall = document.getElementById("Small");
-var checkedMedium = document.getElementsByClassName('smallsize');
-var checkedLarge = document.getElementById("Large");
-console.log(checkedMedium);
+var radioBtn = document.getElementsByClassName("size");
+console.log(radioBtn);
 
-
-  checkedSmall.addEventListener("change", function () {
-    if (checkedSmall.checked) {
-      console.log(checkedSmall.value);
-    } else {
-      console.log("uncheck");
+for(var i = 0 ; i < radioBtn.length ; i++){
+  console.log(radioBtn[i].checked);
+  radioBtn[i].addEventListener('change',function(){
+    if(this.checked == true){
+      var productId = this.dataset.product;
+      var option = this.value;
+      updateOptionOrderItem(productId,option);
     }
-  });
-
-  for(var i =0 ;i< checkedMedium.length ; i++){
-    smallsize[i].addEventListener('change', function(){
-        if(smallsize[i].checked){
-            console.log(smallsize[i].value + "list check")
-        }
-    })
+  })
 }
-function updateOptionOrderItem(productId, action, size) {
+
+
+function updateOptionOrderItem(productId, size) {
     console.log("User is authenticated, sending data ...");
     var url = "/update_item/";
+    const action = "changeoption";
   
     fetch(url, {
       method: "POST",
