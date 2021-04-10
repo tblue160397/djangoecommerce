@@ -12,7 +12,7 @@ import json
 def store(request):
     if request.user.is_authenticated:
         customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, status='Pending')
+        order, created = Order.objects.get_or_create(customer=customer, iscompleted=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
@@ -26,15 +26,36 @@ def store(request):
 def checkout(request):
     if request.user.is_authenticated:
         customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, status='Pending')
+        order, created = Order.objects.get_or_create(customer=customer, iscompleted=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
+        if request.method == 'POST':
+            receiver_phone = request.POST.get('receiver_phone')
+            city = request.POST.get('city')
+            receiver_name = request.POST.get('receiver_name')
+            address = request.POST.get('address')
+            paymentmethod = request.POST.get('paymentmethod')
+            order_date = request.POST.get('order_date')
+            print('checkout information: receiver_name:', receiver_name, 'receiver_phone:', 'order_date:', order_date, receiver_phone, 'city:', city, 'address:', address, 'paymentmethod:', paymentmethod)
+            if ShippingInformation.objects.filter(customer=customer, order=order).exists():
+                shipping = ShippingInformation.objects.get(customer=customer, order=order)
+            else:
+                shipping, created = ShippingInformation.objects.get_or_create(customer=customer, order=order, city=city, address=address, order_date=order_date, phone=receiver_phone)
+            payment, created = Payment.objects.get_or_create(customer=customer, order=order, method=paymentmethod)
+            order.iscompleted=True
+            order.save()
+            if payment.method == 'COD':
+                shipping.status = 'Out for delivery'
+            print(payment)
+            print(shipping)
+
     else:
         order = {'get_cart_total': 0, 'get_cart_items': 0}
         items = []
         return redirect("login")
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'store/checkout.html', context)
+
 
 
 def loginForCustomer(request):
@@ -74,7 +95,7 @@ def customerprofile(request):
     if request.user.is_authenticated:
         user = request.user
         customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, status='Pending')
+        order, created = Order.objects.get_or_create(customer=customer, iscompleted=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
         payments = Payment.objects.filter(ispay=True, customer=customer)
@@ -87,7 +108,7 @@ def customerprofile(request):
 def cart(request):
     if request.user.is_authenticated:
         customer = request.user.customer
-        order, creted = Order.objects.get_or_create(customer=customer, status='Pending')
+        order, creted = Order.objects.get_or_create(customer=customer, iscompleted=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
@@ -109,7 +130,7 @@ def updateItem(request):
 
     customer = request.user.customer
     product = Product.objects.get(id=productId)
-    order, created = Order.objects.get_or_create(customer=customer, status='Pending')
+    order, created = Order.objects.get_or_create(customer=customer, iscompleted=False)
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
 
     if action == 'add':
@@ -156,7 +177,7 @@ def updateEmail(request):
 def detailproduct(request, pk):
     if request.user.is_authenticated:
         customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, status='Pending')
+        order, created = Order.objects.get_or_create(customer=customer, iscompleted=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
@@ -174,7 +195,7 @@ def category(request, name):
     print(name)
     if request.user.is_authenticated:
         customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, status='Pending')
+        order, created = Order.objects.get_or_create(customer=customer, iscompleted=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:

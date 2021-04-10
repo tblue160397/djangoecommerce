@@ -62,15 +62,9 @@ class Comment(models.Model):
 
 
 class Order(models.Model):
-    STATUS = (
-        ('Pending', 'Pending'),
-        ('Out for delivery', 'Out for delivery'),
-        ('Delivered', 'Delivered'),
-        ('Cancel', 'Cancel'),
-    )
+    iscompleted = models.BooleanField(default=False)
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    status = models.CharField(max_length=200, null=True, choices=STATUS, default='Pending')
 
     def __str__(self):
         return str(self.id)
@@ -95,8 +89,8 @@ class Payment(models.Model):
     )
     ispay = models.BooleanField(default=False)
     transid = models.CharField(max_length=200, null=True, blank=True)
-    category = models.CharField(max_length=200, null=True, choices=CATEGORYPAYMENT)
-    order = models.ForeignKey(Order, null=True, on_delete=models.SET_NULL)
+    method = models.CharField(max_length=200, null=True, choices=CATEGORYPAYMENT)
+    order = models.OneToOneField(Order, null=True, on_delete=models.SET_NULL)
     pay_date = models.DateTimeField(auto_now_add=True, null=True)
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     @property
@@ -124,12 +118,21 @@ class OrderItem(models.Model):
 
 
 class ShippingInformation(models.Model):
+    STATUS = (
+        ('New', 'New'),
+        ('Pending', 'Pending'),
+        ('Out for delivery', 'Out for delivery'),
+        ('Delivered', 'Delivered'),
+        ('Cancel', 'Cancel'),
+    )
+    status = models.CharField(max_length=200, choices=STATUS, default='New')
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
-    order = models.ForeignKey(Order, null=True, on_delete=models.SET_NULL)
+    order = models.OneToOneField(Order, null=True, on_delete=models.SET_NULL)
     address = models.CharField(max_length=255, null=True)
     city = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=11, null=True)
-    order_date = models.DateField(verbose_name=('Order Date'))
+    order_date = models.DateTimeField(verbose_name=('Order Date'))
+
 
     def __str__(self):
-        return str(self.address)
+        return str(self.address) + str(self.city)
