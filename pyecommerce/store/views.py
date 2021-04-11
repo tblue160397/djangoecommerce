@@ -186,8 +186,9 @@ def detailproduct(request, pk):
         cartItems = order['get_cart_items']
     product = Product.objects.get(id=pk)
     comments = product.comment_set.all()
-    print(comments)
-    context = {'product': product, 'cartItems': cartItems, 'comments': comments}
+    tags = product.tags.all()
+    print(tags)
+    context = {'product': product, 'cartItems': cartItems, 'comments': comments, 'tags': tags}
     return render(request, 'store/detailproduct.html', context)
 
 
@@ -202,9 +203,12 @@ def category(request, name):
         items = []
         order = {'get_cart_total': 0, 'get_cart_items': 0}
         cartItems = order['get_cart_items']
-    categoryitems = Product.objects.filter(category=name)
-    print(categoryitems)
-    context = {'categoryitems': categoryitems, 'cartItems': cartItems, 'categoryname': name}
+    if Product.objects.filter(category=name).exists():
+        products = Product.objects.filter(category=name)
+    else:
+        products = Product.objects.filter(tags__name=name)
+    print(products)
+    context = {'categoryitems': products, 'cartItems': cartItems, 'categoryname': name}
     return render(request, 'store/categoryitems.html', context)
 
 def addcomment(request):

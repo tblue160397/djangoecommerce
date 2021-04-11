@@ -53,16 +53,12 @@
         <table class="table table-sm table-borderless mb-0">
           <tbody>
             <tr>
-              <th class="pl-0 w-25" scope="row"><strong>Model</strong></th>
-              <td>Shirt 5407X</td>
-            </tr>
-            <tr>
-              <th class="pl-0 w-25" scope="row"><strong>Color</strong></th>
-              <td>Black</td>
-            </tr>
-            <tr>
-              <th class="pl-0 w-25" scope="row"><strong>Delivery</strong></th>
-              <td>USA, Europe</td>
+              <th class="pl-0 w-25" scope="row"><strong>Tag</strong></th>
+              {% for tag in tags %}
+                <td>
+                  <a href="{% url 'category' name=tag.name %}" class="btn-outline-dark btn">#{{tag.name}}</a>
+                </td>
+              {% endfor %}
             </tr>
           </tbody>
         </table>
@@ -151,13 +147,14 @@
       </button>
     </div>
     <!-- Classic tabs -->
-    <div class="classic-tabs border rounded px-4 pt-1">
+    <div class="classic-tabs border rounded px-4 pt-1 col-lg-12">
+      <div class="box-element">
       <ul
         class="nav tabs-primary nav-justified"
         id="advancedTab"
         role="tablist"
       >
-        <li class="nav-item">
+        <li class="nav-item col-md-6">
           <a
             class="nav-link active show"
             id="description-tab"
@@ -169,7 +166,7 @@
             >Description</a
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item col-md-6">
           <a
             class="nav-link"
             id="reviews-tab"
@@ -182,7 +179,8 @@
           >
         </li>
       </ul>
-      <div class="tab-content" id="advancedTabContent">
+    </div>
+      <div class="tab-content col-lg-12" id="advancedTabContent">
         <div
           class="tab-pane fade show active"
           id="description"
@@ -190,7 +188,7 @@
           aria-labelledby="description-tab"
         >
           <h5>Product Description</h5>
-          <p class="small text-muted text-uppercase mb-2">Shirts</p>
+          <p class="small text-muted text-uppercase mb-2">{{product.category}}</p>
           <ul class="rating">
             <li>
               <i class="fas fa-star fa-sm text-primary"></i>
@@ -208,35 +206,10 @@
               <i class="far fa-star fa-sm text-primary"></i>
             </li>
           </ul>
-          <h6>12.99 $</h6>
+          <h6>{{product.price}}</h6>
           <p class="pt-1">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam,
-            sapiente illo. Sit error voluptas repellat rerum quidem, soluta enim
-            perferendis voluptates laboriosam. Distinctio, officia quis dolore
-            quos sapiente tempore alias.
+            {{product.description}}
           </p>
-        </div>
-        <div
-          class="tab-pane fade"
-          id="info"
-          role="tabpanel"
-          aria-labelledby="info-tab"
-        >
-          <h5>Additional Information</h5>
-          <table class="table table-striped table-bordered mt-3">
-            <thead>
-              <tr>
-                <th scope="row" class="w-150 dark-grey-text h6">Weight</th>
-                <td><em>0.3 kg</em></td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row" class="w-150 dark-grey-text h6">Dimensions</th>
-                <td><em>50 × 60 cm</em></td>
-              </tr>
-            </tbody>
-          </table>
         </div>
         <div
           class="tab-pane fade"
@@ -244,7 +217,7 @@
           role="tabpanel"
           aria-labelledby="reviews-tab"
         >
-          <h5><span>({{comments|length}})</span> review for <span>Fantasy T-shirt</span></h5>
+          <h5><span>({{comments|length}})</span> review for <span>{{product.name}}</span></h5>
           {% for comment in comments %}
             <div class="media mt-3 mb-4">
               <div class="media-body">

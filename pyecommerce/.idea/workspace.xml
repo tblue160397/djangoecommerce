@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a9e9f313-8b89-4a43-a28c-b7e4afdc68f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyecommerce/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyecommerce/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/templates/store/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/templates/store/registration/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/registration/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/templates/store/detailproduct.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/detailproduct.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
