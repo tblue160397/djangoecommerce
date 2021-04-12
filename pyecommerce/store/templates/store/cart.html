@@ -51,6 +51,7 @@
             <input
               data-action="change"
               data-product="{{item.product.id}}"
+              data-size="{{item.option}}"
               name="onchangeQuantity"
               type="number"
               min="1"
@@ -61,26 +62,26 @@
         <div style="flex: 1"><p>{{item.get_total}}vnd</p></div>
          <div style="flex:1">
           {% if item.option == 'Small' %}
-            <input type="radio" id="Small" class="size" checked name="{{item.product.id}}" data-product="{{item.product.id}}" value="Small">
+            <input type="radio" id="Small" class="size" checked name="{{item.product.id}}{{item.option}}" data-size="{{item.option}}" data-product="{{item.product.id}}" value="Small">
           {% else %}
-            <input type="radio" id="Small" class="size" name="{{item.product.id}}" data-product="{{item.product.id}}" value="Small">
+            <input type="radio" id="Small" class="size" name="{{item.product.id}}{{item.option}}" data-size="{{item.option}}" data-product="{{item.product.id}}" value="Small">
           {% endif %}
           <label for="Small">Small</label><br>
           {% if item.option == 'Medium' %}
-            <input type="radio" id="Medium" checked name="{{item.product.id}}" data-product="{{item.product.id}}" class="size" value="Medium">
+            <input type="radio" id="Medium" checked name="{{item.product.id}}{{item.option}}" data-size="{{item.option}}" data-product="{{item.product.id}}" class="size" value="Medium">
           {% else %}
-            <input type="radio" id="Medium" name="{{item.product.id}}" data-product="{{item.product.id}}" class="size" value="Medium">
+            <input type="radio" id="Medium" name="{{item.product.id}}{{item.option}}" data-size="{{item.option}}" data-product="{{item.product.id}}" class="size" value="Medium">
           {% endif %}
           <label for="Medium">Medium</label><br>
           {% if item.option == 'Large' %}
-            <input type="radio" id="Large" checked name="{{item.product.id}}" class="size" data-product="{{item.product.id}}" value="Large">
+            <input type="radio" id="Large" checked name="{{item.product.id}}{{item.option}}" data-size="{{item.option}}" class="size" data-product="{{item.product.id}}" value="Large">
           {% else %}
-            <input type="radio" id="Large" name="{{item.product.id}}" class="size" data-product="{{item.product.id}}" value="Large">
+            <input type="radio" id="Large" name="{{item.product.id}}{{item.option}}" data-size="{{item.option}}" class="size" data-product="{{item.product.id}}" value="Large">
           {% endif %}
           <label for="Large">Large</label>
         </div>
         <div style="flex: 1">
-          <a data-action="remove" data-product="{{item.product.id}}" class="btn btn-outline-dark" name="ondeleteOrderItem" >Remove</a>
+          <a data-action="remove" data-product="{{item.product.id}}" data-size="{{item.option}}" class="btn btn-outline-dark" name="ondeleteOrderItem" >Remove</a>
         </div>
       </div>
       {% endfor %}

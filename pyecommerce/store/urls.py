@@ -15,4 +15,5 @@ urlpatterns = [
     path('product/<str:name>', views.category, name='category'),
     path('add_comment/', views.addcomment, name='addcomment'),
     path('update_customer_inf/', views.updateEmail, name="update_customer_inf"),
+    path('add_to_cart/', views.addtocart, name="addtocart"),
 ]

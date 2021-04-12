@@ -5,28 +5,28 @@ for (i = 0; i < updateBtns.length; i++) {
   updateBtns[i].addEventListener("click", function () {
     var productId = this.dataset.product;
     var action = this.dataset.action;
+    var option = this.dataset.size;
     console.log("productId:", productId, "Action:", action);
 
     console.log("USER:", user);
     if (user == "AnonymousUser") {
       console.log("User is not authenticated");
     } else {
-      updateUserOrder(productId, action);
+      updateUserOrder(productId, action, option);
     }
   });
 }
 // request to server
-function updateUserOrder(productId, action) {
+function updateUserOrder(productId, action, option) {
   console.log("User is authenticated, sending data ...");
   var url = "/update_item/";
-
   fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "X-CSRFToken": csrftoken,
     },
-    body: JSON.stringify({ productId: productId, action: action }),
+    body: JSON.stringify({ productId: productId, action: action, option:option }),
   })
     .then((response) => {
       console.log(response);
@@ -50,24 +50,27 @@ for (i = 0; i < onchangeQuantity.length; i++) {
     var productId = this.dataset.product;
     var action = this.dataset.action;
     var quantityValue = this.value;
+    var option = this.dataset.size;
     console.log(
       "productId:",
       productId,
       "Action:",
       action,
       "quantityValue",
-      quantityValue
+      quantityValue,
+      "option:",
+      option
     );
     console.log("USER:", user);
     if (user == "AnonymousUser") {
       console.log("User is not authenticated");
     } else {
-      updateQuantityItem(productId, action, quantityValue);
+      updateQuantityItem(productId, action, quantityValue, option);
     }
   });
 }
 // request to server
-function updateQuantityItem(productId, action, quantity) {
+function updateQuantityItem(productId, action, quantity, option) {
   console.log("User is authenticated, sending data ...");
   var url = "/update_item/";
 
@@ -79,6 +82,7 @@ function updateQuantityItem(productId, action, quantity) {
     },
     body: JSON.stringify({
       productId: productId,
+      option: option,
       action: action,
       quantity: quantity,
     }),
@@ -104,17 +108,18 @@ for (i = 0; i < ondeleteOrderItem.length; i++) {
   ondeleteOrderItem[i].addEventListener("click", function () {
     var productId = this.dataset.product;
     var action = this.dataset.action;
+    var option = this.dataset.size;
     console.log("productId:", productId, "Action:", action);
 
     console.log("USER:", user);
     if (user == "AnonymousUser") {
       console.log("User is not authenticated");
     } else {
-      deleteOrderItem(productId, action);
+      deleteOrderItem(productId, action, option);
     }
   });
 }
-function deleteOrderItem(productId, action) {
+function deleteOrderItem(productId, action,option) {
   console.log("User is authenticated, sending data ...");
   var url = "/update_item/";
 
@@ -124,7 +129,7 @@ function deleteOrderItem(productId, action) {
       "Content-Type": "application/json",
       "X-CSRFToken": csrftoken,
     },
-    body: JSON.stringify({ productId: productId, action: action }),
+    body: JSON.stringify({ productId: productId, action: action, option:option}),
   })
     .then((response) => {
       console.log(response);
@@ -149,14 +154,15 @@ for(var i = 0 ; i < radioBtn.length ; i++){
   radioBtn[i].addEventListener('change',function(){
     if(this.checked == true){
       var productId = this.dataset.product;
-      var option = this.value;
-      updateOptionOrderItem(productId,option);
+      var changedoption = this.value;
+      var rawoption = this.dataset.size;
+      updateOptionOrderItem(productId,changedoption, rawoption);
     }
   })
 }
 
 
-function updateOptionOrderItem(productId, size) {
+function updateOptionOrderItem(productId, size,rawoption) {
     console.log("User is authenticated, sending data ...");
     var url = "/update_item/";
     const action = "changeoption";
@@ -165,17 +171,17 @@ function updateOptionOrderItem(productId, size) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Accept": "application/json",
         "X-CSRFToken": csrftoken,
       },
-      body: JSON.stringify({ productId: productId, action: action, option:size }),
+      body: JSON.stringify({ productId: productId, action: action, changedoption:size, option:rawoption }),
     })
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      })
-      .then((data) => {
-        console.log("data:", data);
+      .then((response)=>{
+        const results = response.json();
+        console.log(results);
         location.reload();
+      }).then((data)=>{
+        console.log("Data is ok", data);
       })
       .catch((error) => {
         location.reload();

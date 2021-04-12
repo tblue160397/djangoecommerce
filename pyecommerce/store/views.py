@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 import json
 
 # Create your views here.
@@ -125,13 +125,13 @@ def updateItem(request):
     data = json.loads(request.body)
     productId = data['productId']
     action = data['action']
+    option = data['option']
     print('Action:', action)
     print('Product:', productId)
-
     customer = request.user.customer
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(customer=customer, iscompleted=False)
-    orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
+    orderItem, created = OrderItem.objects.get_or_create(order=order, product=product, option=option)
 
     if action == 'add':
         orderItem.quantity = (orderItem.quantity + 1)
@@ -145,17 +145,22 @@ def updateItem(request):
             orderItem.delete()
             return redirect('cart')
     elif action == 'changeoption':
-        option = data['option']
-        orderItem.option = option
+        changedoption = data['changedoption']
+        if OrderItem.objects.filter(order=order, product=product, option=changedoption).exists():
+            data = {'updatesize': False}
+            return JsonResponse(data, safe=False)
+        else:
+            orderItem.option = changedoption
+            return redirect('cart')
     orderItem.save()
     if orderItem.quantity == 0:
         orderItem.delete()
         return redirect('cart')
-    return JsonResponse('Item was added', safe=False)
+        return JsonResponse('Item was added', safe=False)
 
 
 def updateEmail(request):
-    data = json.loads(request.body);
+    data = json.loads(request.body)
     email = data['email']
     dob = data['dob']
     phone = data['phone']
@@ -224,4 +229,32 @@ def addcomment(request):
         product = Product.objects.get(id=productid)
         comment = Comment.objects.create(product=product, customer=customer, content=content)
         print(comment)
+    return JsonResponse('Item was added', safe=False)
+
+
+def addtocart(request):
+    user = request.user
+    data = json.loads(request.body)
+    productid = data['productid']
+    if user.is_authenticated:
+        if request.method == 'POST':
+            customer = user.customer
+            action = data['action']
+            size = data['size']
+            quantity = data['quantity']
+            print(customer, action, productid, size, quantity)
+            if action == 'addtocart':
+                product = Product.objects.get(id=productid)
+                order, created = Order.objects.get_or_create(customer=customer, iscompleted=False)
+                if OrderItem.objects.filter(order=order, product=product, option=size).exists():
+                    orderItem = OrderItem.objects.get(order=order, product=product, option=size)
+                    orderItem.quantity = quantity
+                    orderItem.save()
+                    return redirect('cart')
+                else:
+                    orderItem = OrderItem.objects.create(order=order, product=product, option=size, quantity=quantity)
+                    return redirect('cart')
+        else:
+            redirectURL = "product/"+productid
+            return redirect(redirectURL)
     return JsonResponse('Item was added', safe=False)

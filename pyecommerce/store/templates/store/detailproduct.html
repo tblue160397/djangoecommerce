@@ -74,21 +74,14 @@
             <tr>
               <td class="pl-0">
                 <div class="def-number-input number-input safari_only mb-0">
-                  <button
-                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                    class="minus"
-                  ></button>
                   <input
                     class="quantity"
-                    min="0"
+                    min="1"
                     name="quantity"
+                    id="quantity"
                     value="1"
                     type="number"
                   />
-                  <button
-                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                    class="plus"
-                  ></button>
                 </div>
               </td>
               <td>
@@ -98,8 +91,8 @@
                       type="radio"
                       class="form-check-input"
                       id="small"
-                      name="materialExampleRadios"
-                      checked
+                      name="size-option"
+                      value="Small"
                     />
                     <label
                       class="form-check-label small text-uppercase card-link-secondary"
@@ -112,7 +105,9 @@
                       type="radio"
                       class="form-check-input"
                       id="medium"
-                      name="materialExampleRadios"
+                      name="size-option"
+                      checked
+                      value="Medium"
                     />
                     <label
                       class="form-check-label small text-uppercase card-link-secondary"
@@ -125,7 +120,8 @@
                       type="radio"
                       class="form-check-input"
                       id="large"
-                      name="materialExampleRadios"
+                      name="size-option"
+                      value="Large"
                     />
                     <label
                       class="form-check-label small text-uppercase card-link-secondary"
@@ -142,7 +138,7 @@
       <button type="button" class="btn btn-primary btn-md mr-1 mb-2">
         Buy now
       </button>
-      <button type="button" class="btn btn-light btn-md mr-1 mb-2">
+      <button type="button" class="btn btn-light btn-md mr-1 mb-2" data-action="addtocart" id="addtocartBtn" data-product="{{product.id}}">
         <i class="fas fa-shopping-cart pr-2"></i>Add to cart
       </button>
     </div>
@@ -259,4 +255,6 @@
   </div>
 </section>
 <script type="text/javascript" src="{% static 'js/addcomment.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/detailproduct.js' %}"></script>
+</script>
 {% endblock content %}
