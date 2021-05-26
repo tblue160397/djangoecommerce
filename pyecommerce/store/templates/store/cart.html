@@ -7,8 +7,8 @@
         style="display: flex; justify-content: space-between"
       >
         <a style="margin: 5px" class="btn btn-dark" href="{% url 'store' %}"
-          >Back Home</a
-        >
+          >Continue shopping
+        </a>
         <a
           style="margin: 5px"
           class="btn btn-success"
@@ -17,22 +17,10 @@
         >
       </div>
       <hr />
-      <div
-        class="form-inline my-2 my-lg-0"
-        style="display: flex; justify-content: space-between"
-      >
-        <div>
-          <h5>Items: <strong>{{order.get_cart_items}}</strong></h5>
-        </div>
-        <div>
-          <h5>Total costs:<strong> {{order.get_cart_total}} VND</strong></h5>
-        </div>
-      </div>
-      <hr />
     </div>
 
     <br />
-    <div class="box-element">
+    <div class="box-element" style="margin-bottom: 20px">
       <div class="cart-row">
         <div style="flex: 1"></div>
         <div style="flex: 2"><strong>Item</strong></div>
@@ -52,7 +40,7 @@
         </div>
         <div style="flex: 2"><p>{{item.product.name}}</p></div>
         <div style="flex: 1">
-          <p>{{item.product.price|floatformat:2}} VND</p>
+          <p>{{item.product.price|floatformat:0}} VND</p>
         </div>
         <div style="flex: 1">
           <div class="quantity">
@@ -68,7 +56,7 @@
             />
           </div>
         </div>
-        <div style="flex: 1"><p>{{item.get_total}} VND</p></div>
+        <div style="flex: 1"><p>{{item.get_total|floatformat:0}} VND</p></div>
         <div style="flex: 1">{{item.option}}</div>
         <div style="flex: 1">
           <a
@@ -78,11 +66,30 @@
             name="ondeleteOrderItem"
             class="btn btn-danger"
             style="color: aliceblue; border-radius: 5px"
-            >Remove</a
+            >X</a
           >
         </div>
       </div>
       {% endfor %}
+      <div
+        class="form-inline my-2 my-lg-0"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div>
+          <h5>Items: <strong>{{order.get_cart_items}}</strong></h5>
+        </div>
+        <div>
+          <h5>
+            Total costs:<strong>
+              {{order.get_cart_total|floatformat:0}} VND</strong
+            >
+          </h5>
+        </div>
+      </div>
     </div>
   </div>
 </div>

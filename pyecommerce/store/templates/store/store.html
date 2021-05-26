@@ -1,4 +1,7 @@
 {% extends 'store/main.html' %} {% load static %} {% block content %}
+<h2 style="background-color: aquamarine; padding: 10px 20px 10px 40px">
+  All Products
+</h2>
 <div class="row">
   {% for product in products %}
   <div class="col-lg-4" style="padding: 15px">
@@ -15,7 +18,7 @@
         style="display: flex; justify-content: space-between"
       >
         <h6 style="display: inline-block">
-          <strong>{{product.price|floatformat:2}} VND</strong>
+          <strong>{{product.price|floatformat:0}} VND</strong>
         </h6>
         <div class="form-inline my-2 my-lg-0">
           <!-- <button

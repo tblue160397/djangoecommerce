@@ -114,13 +114,26 @@
               >Sign In</a
             >
             {% endif %}
-            <a href="{% url 'cart' %}">
+            <a
+              href="{% url 'cart' %}"
+              class="form-inline my-2 my-lg-0 bg-success"
+              style="
+                border-radius: 5px;
+                margin: 0 5px;
+                padding: 4px 4px 2px 0px;
+              "
+            >
               <img
                 id="cart-icon"
                 src="{% static 'images/shopping-bag.svg' %}"
               />
+              <p
+                id="cart-total"
+                style="width: 15px; height: 15px; font-size: 0.7rem"
+              >
+                {{cartItems}}
+              </p>
             </a>
-            <p id="cart-total">{{cartItems}}</p>
           </div>
         </div>
       </div>
