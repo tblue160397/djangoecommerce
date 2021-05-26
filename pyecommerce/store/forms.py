@@ -7,14 +7,14 @@ class CustomerForm(UserCreationForm):
     email = forms.EmailField(required=True)
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'password1', 'password2', 'email']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
         widgets = {
-            'first_name': forms.fields.TextInput(attrs={'placeholder': 'Enter your first name', 'class': 'form-control'}),
-            'last_name': forms.fields.TextInput(attrs={'placeholder': 'Enter your last name', 'class': 'form-control'}),
-            'username': forms.fields.TextInput(attrs={'placeholder': 'Enter your user name', 'class': 'form-control'}),
-            'password1': forms.fields.TextInput(attrs={'placeholder': 'Enter your password name', 'class': 'form-control'}),
-            'password2': forms.fields.TextInput(attrs={'placeholder': 'Enter your confirm password like password', 'class': 'form-control'}),
-            'email': forms.fields.EmailInput(attrs={'placeholder': 'Enter your Email', 'class': 'form-control'}),
+            'first_name': forms.fields.TextInput(attrs={'placeholder': 'First name', 'class': 'form-control'}),
+            'last_name': forms.fields.TextInput(attrs={'placeholder': 'Last name', 'class': 'form-control'}),
+            'username': forms.fields.TextInput(attrs={'placeholder': 'User name', 'class': 'form-control'}),
+            'email': forms.fields.EmailInput(attrs={'placeholder': 'Email', 'class': 'form-control'}),
+            'password1': forms.fields.TextInput(attrs={'placeholder': 'Password', 'class': 'form-control'}),
+            'password2': forms.fields.TextInput(attrs={'placeholder': 'Password', 'class': 'form-control'}),
         }
 
         def save(self, commit=True):

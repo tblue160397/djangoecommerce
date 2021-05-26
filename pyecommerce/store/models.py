@@ -35,10 +35,10 @@ class Tag(models.Model):
 
 class Product(models.Model):
     CATEGORY = (
-        ('Short', 'Short'),
-        ('Tank Top', 'Tank Top'),
-        ('T Shirt', 'T Shirt'),
-        ('Under Wear', 'Under Wear')
+        ('Baby boy clothes', 'Baby boy clothes'),
+        ('Baby girl clothes', 'Baby girl clothes'),
+        ('Baby supplies', 'Baby supplies'),
+        ('Mom and baby couple', 'Mom and baby couple')
     )
     name = models.CharField(max_length=255, null=True)
     price = models.FloatField(null=True)
