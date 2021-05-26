@@ -2,156 +2,12 @@
 <div class="container">
   <div class="main-body">
     <div class="row gutters-sm">
-      <div class="col-md-4 mb-3">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex flex-column align-items-center text-center">
-              <img
-                src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                alt="Admin"
-                class="rounded-circle"
-                width="150"
-              />
-              <div class="mt-3">
-                <h4>{{user.last_name}} {{user.first_name}}</h4>
-                <p class="text-secondary mb-1">Customer</p>
-                <p class="text-muted font-size-sm">{{user.customer.address}}</p>
-                <button class="btn btn-primary">Follow</button>
-                <button class="btn btn-outline-primary">Message</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card mt-3">
-          <ul class="list-group list-group-flush">
-            <li
-              class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
-            >
-              <h6 class="mb-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="feather feather-globe mr-2 icon-inline"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="2" y1="12" x2="22" y2="12"></line>
-                  <path
-                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                  ></path></svg
-                >spend money Total
-              </h6>
-              <span class="text-secondary">$$${{total_spend_money}}</span>
-            </li>
-            <li
-              class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
-            >
-              <h6 class="mb-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="feather feather-github mr-2 icon-inline"
-                >
-                  <path
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                  ></path></svg
-                >Github
-              </h6>
-              <span class="text-secondary">bootdey</span>
-            </li>
-            <li
-              class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
-            >
-              <h6 class="mb-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="feather feather-twitter mr-2 icon-inline text-info"
-                >
-                  <path
-                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
-                  ></path></svg
-                >Twitter
-              </h6>
-              <span class="text-secondary">@bootdey</span>
-            </li>
-            <li
-              class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
-            >
-              <h6 class="mb-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="feather feather-instagram mr-2 icon-inline text-danger"
-                >
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                  <path
-                    d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-                  ></path>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg
-                >Instagram
-              </h6>
-              <span class="text-secondary">bootdey</span>
-            </li>
-            <li
-              class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
-            >
-              <h6 class="mb-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="feather feather-facebook mr-2 icon-inline text-primary"
-                >
-                  <path
-                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-                  ></path></svg
-                >Facebook
-              </h6>
-              <span class="text-secondary">bootdey</span>
-            </li>
-          </ul>
-        </div>
-      </div>
       <div class="col-md-8">
         <div class="card mb-3">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Full Name</h6>
+                <h6 class="mb-0">Full Name:</h6>
               </div>
               <div class="col-sm-9 text-secondary">
                 {{user.last_name}} {{user.first_name}}
@@ -160,26 +16,7 @@
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Date of birth</h6>
-              </div>
-              {% if user.customer.dob%}
-                <p>{{user.customer.dob|date:"SHORT_DATE_FORMAT"}}</p>
-              {% else %}
-                <input
-                  type="date"
-                  id="dobinput"
-                  readonly
-                  class="col-sm-8 text-secondary"
-                />
-                <button class="col-sm-1 btn" onclick="setReadonly('dobinput')">
-                  <i class="fas fa-edit" style="font-size: 24px"></i>
-                </button>
-              {% endif %}
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Email</h6>
+                <h6 class="mb-0">Email:</h6>
               </div>
               <input
                 type="text"
@@ -191,6 +28,25 @@
               <button class="col-sm-1 btn" onclick="setReadonly('emailinput')">
                 <i class="fas fa-edit" style="font-size: 24px"></i>
               </button>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">DoB:</h6>
+              </div>
+              {% if user.customer.dob%}
+              <p>{{user.customer.dob|date:"SHORT_DATE_FORMAT"}}</p>
+              {% else %}
+              <input
+                type="date"
+                id="dobinput"
+                readonly
+                class="col-sm-8 text-secondary"
+              />
+              <button class="col-sm-1 btn" onclick="setReadonly('dobinput')">
+                <i class="fas fa-edit" style="font-size: 24px"></i>
+              </button>
+              {% endif %}
             </div>
             <hr />
             <div class="row">
@@ -213,158 +69,110 @@
               <div class="col-sm-3">
                 <h6 class="mb-0">Address</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
-                <input
-                  type="text"
-                  id="addressinput"
-                  readonly
-                  class="col-sm-8 text-secondary"
-                  value="{{user.customer.address}}"
-                />
-                <button class="col-sm-1 btn" onclick="setReadonly('addressinput')">
-                  <i class="fas fa-edit" style="font-size: 24px"></i>
+              <input
+                type="text"
+                id="addressinput"
+                readonly
+                class="col-sm-8 text-secondary"
+                value="{{user.customer.address}}"
+              />
+              <button
+                class="col-sm-1 btn"
+                onclick="setReadonly('addressinput')"
+              >
+                <i class="fas fa-edit" style="font-size: 24px"></i>
+              </button>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-8"></div>
+              <div class="col-sm-4">
+                <button
+                  class="btn btn-success mb-0 col-sm-12"
+                  onclick="updateCustomerInf('{{user.phone}}','{{user.email}}', '{{user.address}}', '{{user.customer.dob}}')"
+                  disabled
+                  id="savebtn"
+                >
+                  Save
                 </button>
-              </div>
-              <hr />
-              <div class="row">
-                <div class="col-sm-4">
-                  <button class="btn btn-outline-primary mb-0" onclick="updateCustomerInf('{{user.phone}}','{{user.email}}', '{{user.address}}', '{{user.customer.dob}}')" disabled id="savebtn">Save</button>
-                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row gutters-sm">
-          <div class="col-sm-6 mb-3">
-            <div class="card h-100">
-              <div class="card-body">
-                <h6 class="d-flex align-items-center mb-3">
-                  <i class="material-icons text-info mr-2">assignment</i>Project
-                  Status
-                </h6>
-                <small>Web Design</small>
-                <div class="progress mb-3" style="height: 5px">
-                  <div
-                    class="progress-bar bg-primary"
-                    role="progressbar"
-                    style="width: 80%"
-                    aria-valuenow="80"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-                <small>Website Markup</small>
-                <div class="progress mb-3" style="height: 5px">
-                  <div
-                    class="progress-bar bg-primary"
-                    role="progressbar"
-                    style="width: 72%"
-                    aria-valuenow="72"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-                <small>One Page</small>
-                <div class="progress mb-3" style="height: 5px">
-                  <div
-                    class="progress-bar bg-primary"
-                    role="progressbar"
-                    style="width: 89%"
-                    aria-valuenow="89"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-                <small>Mobile Template</small>
-                <div class="progress mb-3" style="height: 5px">
-                  <div
-                    class="progress-bar bg-primary"
-                    role="progressbar"
-                    style="width: 55%"
-                    aria-valuenow="55"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-                <small>Backend API</small>
-                <div class="progress mb-3" style="height: 5px">
-                  <div
-                    class="progress-bar bg-primary"
-                    role="progressbar"
-                    style="width: 66%"
-                    aria-valuenow="66"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+                src="https://avatars.githubusercontent.com/u/57191540?s=200&v=4"
+                alt="Admin"
+                class="rounded-circle"
+                width="150"
+              />
+              <div class="mt-3">
+                <h4>{{user.last_name}} {{user.first_name}}</h4>
+                <p class="text-muted font-size-sm">{{user.customer.phone}}</p>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 mb-3">
-            <div class="card h-100">
-              <div class="card-body">
-                <h6 class="d-flex align-items-center mb-3">
-                  <i class="material-icons text-info mr-2">assignment</i>Project
-                  Status
-                </h6>
-                <small>Web Design</small>
-                <div class="progress mb-3" style="height: 5px">
-                  <div
-                    class="progress-bar bg-primary"
-                    role="progressbar"
-                    style="width: 80%"
-                    aria-valuenow="80"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-                <small>Website Markup</small>
-                <div class="progress mb-3" style="height: 5px">
-                  <div
-                    class="progress-bar bg-primary"
-                    role="progressbar"
-                    style="width: 72%"
-                    aria-valuenow="72"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-                <small>One Page</small>
-                <div class="progress mb-3" style="height: 5px">
-                  <div
-                    class="progress-bar bg-primary"
-                    role="progressbar"
-                    style="width: 89%"
-                    aria-valuenow="89"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-                <small>Mobile Template</small>
-                <div class="progress mb-3" style="height: 5px">
-                  <div
-                    class="progress-bar bg-primary"
-                    role="progressbar"
-                    style="width: 55%"
-                    aria-valuenow="55"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-                <small>Backend API</small>
-                <div class="progress mb-3" style="height: 5px">
-                  <div
-                    class="progress-bar bg-primary"
-                    role="progressbar"
-                    style="width: 66%"
-                    aria-valuenow="66"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+        <div class="card mt-3">
+          <ul class="list-group list-group-flush">
+            <li
+              class="
+                list-group-item
+                d-flex
+                justify-content-between
+                align-items-center
+                flex-wrap
+              "
+            >
+              <h6 class="mb-0">
+                <!-- <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-globe mr-2 icon-inline"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path>
+                </svg> -->
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-globe mr-2 icon-inline"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path
+                    d="m195.839844 396.394531c-8.269532 0-15-6.730469-15-15 0-8.285156-6.714844-15-15-15s-15 6.714844-15 15c0 19.613281 12.617187 36.324219 30.160156 42.472657v13.132812c0 8.285156 6.714844 15 15 15s15-6.714844 15-15v-13.242188c17.375-6.234374 29.839844-22.867187 29.839844-42.363281 0-24.8125-20.1875-45-45-45-8.269532 0-15-6.730469-15-15 0-8.273437 6.730468-15 15-15 8.269531 0 15 6.726563 15 15 0 8.285157 6.714844 15 15 15s15-6.714843 15-15c0-19.496093-12.464844-36.128906-29.839844-42.367187v-22.027344c0-8.285156-6.714844-15-15-15s-15 6.714844-15 15v21.917969c-17.542969 6.148437-30.160156 22.859375-30.160156 42.476562 0 24.8125 20.1875 45 45 45 8.269531 0 15 6.726563 15 15 0 8.269531-6.730469 15-15 15zm0 0"
+                  />
+                  <path
+                    d="m61.140625 487.503906c31.214844 16.710938 74.070313 24.496094 134.859375 24.496094 49.460938 0 86.6875-5.125 115.609375-16.023438 8.261719 9.789063 20.609375 16.023438 34.390625 16.023438h121c24.8125 0 45-20.1875 45-45 0-11.515625-4.355469-22.03125-11.496094-30 7.144532-7.96875 11.496094-18.484375 11.496094-30s-4.355469-22.03125-11.496094-30c7.144532-7.96875 11.496094-18.484375 11.496094-30s-4.355469-22.03125-11.496094-30c7.144532-7.96875 11.496094-18.484375 11.496094-30 0-24.8125-20.1875-45-45-45h-121c-1.460938 0-2.90625.074219-4.332031.214844-15.054688-18.234375-32.695313-33.523438-52.132813-45.25 7.121094-7.960938 11.464844-18.464844 11.464844-29.964844 0-17.925781-10.539062-33.433594-25.746094-40.664062l25.007813-76.683594c1.488281-4.570313.699219-9.574219-2.121094-13.460938-2.824219-3.890625-7.335937-6.191406-12.140625-6.191406h-47.578125c-6.195313-17.460938-22.867187-30-42.421875-30-19.558594 0-36.238281 12.539062-42.429688 30h-47.570312c-4.804688 0-9.316406 2.300781-12.140625 6.191406-2.820313 3.886719-3.609375 8.890625-2.121094 13.460938l25.007813 76.683594c-15.207032 7.230468-25.746094 22.738281-25.746094 40.664062 0 11.507812 4.347656 22.019531 11.480469 29.984375-60.183594 36.324219-102.480469 105.3125-102.480469 180.015625 0 51.605469 20.570312 88.78125 61.140625 110.503906zm420.859375-140.503906c0 8.269531-6.730469 15-15 15h-121c-8.269531 0-15-6.730469-15-15s6.730469-15 15-15h121c8.269531 0 15 6.730469 15 15zm0 60c0 8.269531-6.730469 15-15 15h-121c-8.269531 0-15-6.730469-15-15s6.730469-15 15-15h121c8.269531 0 15 6.730469 15 15zm-15 75h-121c-8.269531 0-15-6.730469-15-15s6.730469-15 15-15h121c8.269531 0 15 6.730469 15 15s-6.730469 15-15 15zm15-195c0 8.269531-6.730469 15-15 15h-121c-8.269531 0-15-6.730469-15-15s6.730469-15 15-15h121c8.269531 0 15 6.730469 15 15zm-226.429688-105h-119.136718c-.132813-.003906-.265625 0-.398438 0h-.035156c-8.269531 0-15-6.730469-15-15 0-8.253906 6.703125-14.972656 14.953125-14.996094h.042969c.035156 0 .070312-.003906.105468-.003906h119.792969c.035157 0 .074219.003906.109375.003906h.042969c8.25.023438 14.953125 6.742188 14.953125 14.996094 0 8.269531-6.730469 15-15 15h-.046875c-.125 0-.253906-.003906-.382813 0zm-89.570312-122c8.285156 0 15-6.714844 15-15 0-8.269531 6.730469-15 15-15s15 6.730469 15 15v30c0 8.285156 6.714844 15 15 15s15-6.714844 15-15v-15h24.332031l-20.21875 62h-98.226562l-20.21875-62zm-27.074219 152h114.089844c22.714844 9.488281 43.417969 24.429688 60.683594 43.714844-7.851563 8.105468-12.699219 19.136718-12.699219 31.285156 0 11.515625 4.355469 22.03125 11.496094 30-7.140625 7.96875-11.496094 18.484375-11.496094 30s4.355469 22.03125 11.496094 30c-7.140625 7.96875-11.496094 18.484375-11.496094 30s4.355469 22.03125 11.496094 30c-7.140625 7.96875-11.496094 18.484375-11.496094 30 0 .308594.015625.613281.023438.917969-25.375 9.582031-59.171876 14.082031-105.023438 14.082031-55.65625 0-94.011719-6.65625-120.699219-20.945312-30.90625-16.546876-45.300781-43.253907-45.300781-84.054688 0-70.75 44.65625-138.171875 108.925781-165zm0 0"
+                  />
+                </svg>
+                Total cost: &nbsp;
+              </h6>
+              <span class="text-secondary">{{total_spend_money}} VND</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

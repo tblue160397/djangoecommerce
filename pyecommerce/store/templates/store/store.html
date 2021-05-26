@@ -1,31 +1,43 @@
 {% extends 'store/main.html' %} {% load static %} {% block content %}
 <div class="row">
   {% for product in products %}
-  <div class="col-lg-4">
-    <img class="thumbnail" src="{{product.image.url}}" />
-    <div class="box-element product">
+  <div class="col-lg-4" style="padding: 15px">
+    <img
+      style="border-radius: 10px 10px 0px 0px"
+      class="thumbnail"
+      src="{{product.image.url}}"
+    />
+    <div class="box-element product" style="border-radius: 0px 0px 20px 5px">
       <h6><strong>{{product.name}}</strong></h6>
       <hr />
-
-      <button
-        data-action="add"
-        data-product="{{product.id}}"
-        data-size="Medium"
-        class="btn btn-outline-secondary add-btn update-cart"
+      <div
+        class="form-inline my-2 my-lg-0"
+        style="display: flex; justify-content: space-between"
       >
-        Add to Cart
-      </button>
-      <a
-        class="btn btn-outline-success"
-        name="detailproduct"
-        data-action="viewproduct"
-        data-product="{{product.id}}"
-        href="{% url 'detailproduct' pk=product.id %}"
-        >View</a
-      >
-      <h4 style="display: inline-block; float: right">
-        <strong>{{product.price|floatformat:2}}</strong>
-      </h4>
+        <h6 style="display: inline-block">
+          <strong>{{product.price|floatformat:2}} VND</strong>
+        </h6>
+        <div class="form-inline my-2 my-lg-0">
+          <!-- <button
+            data-action="add"
+            data-product="{{product.id}}"
+            data-size="Medium"
+            class="btn btn-secondary add-btn update-cart"
+            style="border-radius: 10px 0 0 0"
+          >
+            Add to Cart
+          </button> -->
+          <a
+            class="btn btn-success"
+            style="border-radius: 20px 0 10px 0"
+            name="detailproduct"
+            data-action="viewproduct"
+            data-product="{{product.id}}"
+            href="{% url 'detailproduct' pk=product.id %}"
+            >View</a
+          >
+        </div>
+      </div>
     </div>
   </div>
   {% endfor %}

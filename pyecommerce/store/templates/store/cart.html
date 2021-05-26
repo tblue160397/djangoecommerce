@@ -2,51 +2,59 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="box-element">
-      <a class="btn btn-outline-dark" href="{% url 'store' %}"
-        >&#x2190; Continue Shopping</a
+      <div
+        class="form-inline my-2 my-lg-0"
+        style="display: flex; justify-content: space-between"
       >
-
-      <br />
-      <br />
-      <table class="table">
-        <tr>
-          <th>
-            <h5>Items: <strong>{{order.get_cart_items}}</strong></h5>
-          </th>
-          <th>
-            <h5>Total:<strong> {{order.get_cart_total}}vnd</strong></h5>
-          </th>
-          <th>
-            <a
-              style="float: right; margin: 5px"
-              class="btn btn-success"
-              href="{% url 'checkout' %}"
-              >Checkout</a
-            >
-          </th>
-        </tr>
-      </table>
+        <a style="margin: 5px" class="btn btn-dark" href="{% url 'store' %}"
+          >Back Home</a
+        >
+        <a
+          style="margin: 5px"
+          class="btn btn-success"
+          href="{% url 'checkout' %}"
+          >Checkout</a
+        >
+      </div>
+      <hr />
+      <div
+        class="form-inline my-2 my-lg-0"
+        style="display: flex; justify-content: space-between"
+      >
+        <div>
+          <h5>Items: <strong>{{order.get_cart_items}}</strong></h5>
+        </div>
+        <div>
+          <h5>Total costs:<strong> {{order.get_cart_total}} VND</strong></h5>
+        </div>
+      </div>
+      <hr />
     </div>
 
     <br />
     <div class="box-element">
       <div class="cart-row">
-        <div style="flex: 2"></div>
-        <div style="flex: 1"><strong>Item</strong></div>
+        <div style="flex: 1"></div>
+        <div style="flex: 2"><strong>Item</strong></div>
         <div style="flex: 1"><strong>Price</strong></div>
-        <div style="flex: 2"><strong>Quantity</strong></div>
+        <div style="flex: 1"><strong>Quantity</strong></div>
         <div style="flex: 1"><strong>Total</strong></div>
-         <div style="flex: 1"><strong>Size Option</strong></div>
-		<div style="flex: 1"><strong>Action</strong></div>
+        <div style="flex: 1"><strong>Size</strong></div>
+        <div style="flex: 1"><strong>Action</strong></div>
       </div>
       {% for item in items %}
-      <div class="cart-row">
-        <div style="flex: 2">
+      <div
+        class="cart-row"
+        style="display: flex; justify-content: space-between"
+      >
+        <div style="flex: 1">
           <img class="row-image" src="{{item.product.image.url}}" />
         </div>
-        <div style="flex: 1"><p>{{item.product.name}}</p></div>
-        <div style="flex: 1"><p>{{item.product.price|floatformat:2}}</p></div>
-        <div style="flex: 2">
+        <div style="flex: 2"><p>{{item.product.name}}</p></div>
+        <div style="flex: 1">
+          <p>{{item.product.price|floatformat:2}} VND</p>
+        </div>
+        <div style="flex: 1">
           <div class="quantity">
             <input
               data-action="change"
@@ -56,32 +64,22 @@
               type="number"
               min="1"
               value="{{item.quantity}}"
+              style="width: 50%"
             />
           </div>
         </div>
-        <div style="flex: 1"><p>{{item.get_total}}vnd</p></div>
-         <div style="flex:1">
-          {% if item.option == 'Small' %}
-            <input type="radio" id="Small" class="size" checked name="{{item.product.id}}{{item.option}}" data-size="{{item.option}}" data-product="{{item.product.id}}" value="Small">
-          {% else %}
-            <input type="radio" id="Small" class="size" name="{{item.product.id}}{{item.option}}" data-size="{{item.option}}" data-product="{{item.product.id}}" value="Small">
-          {% endif %}
-          <label for="Small">Small</label><br>
-          {% if item.option == 'Medium' %}
-            <input type="radio" id="Medium" checked name="{{item.product.id}}{{item.option}}" data-size="{{item.option}}" data-product="{{item.product.id}}" class="size" value="Medium">
-          {% else %}
-            <input type="radio" id="Medium" name="{{item.product.id}}{{item.option}}" data-size="{{item.option}}" data-product="{{item.product.id}}" class="size" value="Medium">
-          {% endif %}
-          <label for="Medium">Medium</label><br>
-          {% if item.option == 'Large' %}
-            <input type="radio" id="Large" checked name="{{item.product.id}}{{item.option}}" data-size="{{item.option}}" class="size" data-product="{{item.product.id}}" value="Large">
-          {% else %}
-            <input type="radio" id="Large" name="{{item.product.id}}{{item.option}}" data-size="{{item.option}}" class="size" data-product="{{item.product.id}}" value="Large">
-          {% endif %}
-          <label for="Large">Large</label>
-        </div>
+        <div style="flex: 1"><p>{{item.get_total}} VND</p></div>
+        <div style="flex: 1">{{item.option}}</div>
         <div style="flex: 1">
-          <a data-action="remove" data-product="{{item.product.id}}" data-size="{{item.option}}" class="btn btn-outline-dark" name="ondeleteOrderItem" >Remove</a>
+          <a
+            data-action="remove"
+            data-product="{{item.product.id}}"
+            data-size="{{item.option}}"
+            name="ondeleteOrderItem"
+            class="btn btn-danger"
+            style="color: aliceblue; border-radius: 5px"
+            >Remove</a
+          >
         </div>
       </div>
       {% endfor %}

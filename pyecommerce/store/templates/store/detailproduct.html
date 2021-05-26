@@ -1,6 +1,9 @@
 {% extends 'store/main.html' %} {% load static %} {% block content %}
 <!--Section: Block Content-->
-<section class="mb-5">
+<h2 style="background-color: aquamarine; padding: 10px 20px 10px 40px">
+  {{product.category}}
+</h2>
+<section class="mb-5" style="background-color: aliceblue; padding: 10px 10px;">
   <div class="row">
     <div class="col-md-6 mb-4 mb-md-0">
       <div id="mdb-lightbox-ui"></div>
@@ -24,44 +27,31 @@
       </div>
     </div>
     <div class="col-md-6">
-      <h5>{{product.name}}t</h5>
-      <p class="mb-2 text-muted text-uppercase small">{{product.category}}</p>
-      <ul class="rating">
-        <li>
-          <i class="fas fa-star fa-sm text-primary"></i>
-        </li>
-        <li>
-          <i class="fas fa-star fa-sm text-primary"></i>
-        </li>
-        <li>
-          <i class="fas fa-star fa-sm text-primary"></i>
-        </li>
-        <li>
-          <i class="fas fa-star fa-sm text-primary"></i>
-        </li>
-        <li>
-          <i class="far fa-star fa-sm text-primary"></i>
-        </li>
-      </ul>
+      <h5>{{product.name}}</h5>
+      <!-- <p class="mb-2 text-muted text-uppercase small">{{product.category}}</p> -->
       <p>
-        <span class="mr-1"><strong>${{product.price}}</strong></span>
+        <span class="mr-1"><strong>Price: {{product.price}} VND</strong></span>
       </p>
-      <p class="pt-1">
+      <!-- <p class="pt-1">
        {{product.description}}
-      </p>
-      <div class="table-responsive">
-        <table class="table table-sm table-borderless mb-0">
+      </p> -->
+      <div class="form-inline my-2 my-lg-0"
+          style="display: flex; align-items: center;">
+      <!-- <div class="table-responsive"> -->
+        <!-- <table class="table table-sm table-borderless mb-0">
           <tbody>
-            <tr>
-              <th class="pl-0 w-25" scope="row"><strong>Tag</strong></th>
+            <tr> -->
+              <div class="pl-0 w-25" scope="row"><strong>Tag: </strong></div>
+              <div>
               {% for tag in tags %}
-                <td>
-                  <a href="{% url 'category' name=tag.name %}" class="btn-outline-dark btn">#{{tag.name}}</a>
-                </td>
+                <!-- <td> -->
+                  <a href="{% url 'category' name=tag.name %}" >#{{tag.name}}</a>
+                <!-- </td> -->
               {% endfor %}
-            </tr>
+              </div>
+            <!-- </tr>
           </tbody>
-        </table>
+        </table> -->
       </div>
       <hr />
       <div class="table-responsive mb-2">
@@ -81,6 +71,7 @@
                     id="quantity"
                     value="1"
                     type="number"
+                    style="width: 50%; text-align: center;"
                   />
                 </div>
               </td>
@@ -143,39 +134,40 @@
       </button>
     </div>
     <!-- Classic tabs -->
-    <div class="classic-tabs border rounded px-4 pt-1 col-lg-12">
+    <div class="classic-tabs px-4 pt-1 col-lg-12">
       <div class="box-element">
-      <ul
-        class="nav tabs-primary nav-justified"
-        id="advancedTab"
-        role="tablist"
-      >
-        <li class="nav-item col-md-6">
-          <a
-            class="nav-link active show"
-            id="description-tab"
-            data-toggle="tab"
-            href="#description"
-            role="tab"
-            aria-controls="description"
-            aria-selected="true"
-            >Description</a
-          >
-        </li>
-        <li class="nav-item col-md-6">
-          <a
-            class="nav-link"
-            id="reviews-tab"
-            data-toggle="tab"
-            href="#reviews"
-            role="tab"
-            aria-controls="reviews"
-            aria-selected="false"
-            >Reviews ({{comments|length}})</a
-          >
-        </li>
-      </ul>
-    </div>
+        <ul
+          class="nav tabs-primary nav-justified"
+          id="advancedTab"
+          role="tablist"
+          style="background-color: antiquewhite;"
+        >
+          <li class="nav-item col-md-6">
+            <a
+              class="nav-link active show"
+              id="description-tab"
+              data-toggle="tab"
+              href="#description"
+              role="tab"
+              aria-controls="description"
+              aria-selected="true"
+              >Description</a
+            >
+          </li>
+          <li class="nav-item col-md-6">
+            <a
+              class="nav-link"
+              id="reviews-tab"
+              data-toggle="tab"
+              href="#reviews"
+              role="tab"
+              aria-controls="reviews"
+              aria-selected="false"
+              >Reviews ({{comments|length}})</a
+            >
+          </li>
+        </ul>
+      </div>
       <div class="tab-content col-lg-12" id="advancedTabContent">
         <div
           class="tab-pane fade show active"
@@ -184,25 +176,8 @@
           aria-labelledby="description-tab"
         >
           <h5>Product Description</h5>
-          <p class="small text-muted text-uppercase mb-2">{{product.category}}</p>
-          <ul class="rating">
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="far fa-star fa-sm text-primary"></i>
-            </li>
-          </ul>
-          <h6>{{product.price}}</h6>
+          <!-- <p class="small text-muted text-uppercase mb-2">{{product.category}}</p>
+          <h6>{{product.price}}</h6> -->
           <p class="pt-1">
             {{product.description}}
           </p>
@@ -215,7 +190,7 @@
         >
           <h5><span>({{comments|length}})</span> review for <span>{{product.name}}</span></h5>
           {% for comment in comments %}
-            <div class="media mt-3 mb-4">
+            <div class="media mt-3 mb-4" style="background-color: blanchedalmond; padding: 10px; border-radius: 4px;">
               <div class="media-body">
                 <div class="d-sm-flex justify-content-between">
                   <p class="mt-1 mb-2">
@@ -230,11 +205,11 @@
             </div>
           {% endfor %}
           <hr />
-          <h5 class="mt-4">Add a review</h5>
+          <h5 class="mt-4">Write a review</h5>
           <div>
             <!-- Add review -->
               <div class="md-form md-outline">
-                <label for="form76">Your review</label>
+                <!-- <label for="form76">Your review</label> -->
                 <textarea
                   id="commentcontent"
                   class="md-textarea form-control pr-6"
@@ -242,10 +217,11 @@
                   required
                 ></textarea>
               </div>
-                <button data-product="{{product.id}}" data-action="addcomment" id="addcomment" class="btn btn-primary" style="border: 5px; margin: 5px;">
-                  Add a review
-                </button>
-           
+              <button 
+                data-product="{{product.id}}" data-action="addcomment" id="addcomment" class="btn btn-primary" style="border: 5px; margin: 10px 0px 20px 0px; float: right;"
+              >
+                Review
+              </button>
             </div>
           </div>
         </div>
