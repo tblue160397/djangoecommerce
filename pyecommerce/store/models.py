@@ -35,10 +35,11 @@ class Tag(models.Model):
 
 class Product(models.Model):
     CATEGORY = (
-        ('Baby boy clothes', 'Baby boy clothes'),
-        ('Baby girl clothes', 'Baby girl clothes'),
-        ('Baby supplies', 'Baby supplies'),
-        ('Mom and baby couple', 'Mom and baby couple')
+        ('Crop Top', 'Crop Top'),
+        ('Jacket', 'Jacket'),
+        ('Pant', 'Pant'),
+        ('Shoes', 'Shoes'),
+        ('Sport equipment', 'sport equipment'),
     )
     name = models.CharField(max_length=255, null=True)
     price = models.FloatField(null=True)
@@ -97,6 +98,14 @@ class Payment(models.Model):
     def get_total_price(self):
         total_price = self.order.get_cart_total
         return total_price
+
+    @property
+    def payment_factory(self):
+        if self.method == "COD":
+            self.ispay = False;
+        elif self.method == "VNPAY":
+            self.ispay = True;
+        self.save()
 
 
 class OrderItem(models.Model):

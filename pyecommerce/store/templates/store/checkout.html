@@ -1,4 +1,9 @@
 {% extends 'store/main.html' %} {% load static %} {% block content %}
+{% if iscompleted%}
+<script type="text/javascript">
+  window.alert("Bạn đã thanh toán thành công")
+</script>
+{%endif%}
 <div class="row">
   <div class="col-lg-4">
     <div class="box-element" id="form-wrapper">

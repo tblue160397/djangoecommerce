@@ -16,4 +16,6 @@ urlpatterns = [
     path('add_comment/', views.addcomment, name='addcomment'),
     path('update_customer_inf/', views.updateEmail, name="update_customer_inf"),
     path('add_to_cart/', views.addtocart, name="addtocart"),
+    path('cancel_order/', views.cancel_order, name="cancel_order"),
+    path('staff/', views.staff_home, name="staff")
 ]

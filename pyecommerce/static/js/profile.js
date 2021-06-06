@@ -8,7 +8,9 @@ var dobinput = document.getElementById('dobinput');
 
 var savebtn = document.getElementById("savebtn");
 
+var cancelbtn = document.getElementsByName("cancleorder");
 
+var confirmbtn = document.getElementsByName("confirmorder");
 
 function setReadonly(idelement){
     var inputelement = document.getElementById(idelement);
@@ -73,7 +75,8 @@ addressinput.addEventListener('change', function(){
         addressvalue = address;
     }
     updateInf(emailvalue,dobvalue,phonevalue,addressvalue);
- }
+ };
+
  function updateInf(email,dob,phone,address){
     var url = "/update_customer_inf/";
 
@@ -97,4 +100,45 @@ addressinput.addEventListener('change', function(){
           location.reload();
           console.log("error: " + error);
         });
+ };
+
+ function cancleOrder(shippingid,action){
+    const url = "/cancel_order/";
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken,
+        },
+        body: JSON.stringify({ shippingid : shippingid , action : action}),
+      })
+        .then((response) => {
+          console.log(response);
+          return response.json();
+        })
+        .then((data) => {
+          console.log("data:", data);
+          location.reload();
+        })
+        .catch((error) => {
+          location.reload();
+          console.log("error: " + error);
+        });
+ };
+ 
+ for(var i = 0; i < cancelbtn.length ; i++){
+    cancelbtn[i].addEventListener('click',function(){
+        var shippingid = this.dataset.shippingid;
+        var action = this.dataset.action;
+        cancleOrder(shippingid,action);
+    });
+ }
+
+ for(var i = 0; i < confirmbtn.length ; i++){
+    confirmbtn[i].addEventListener('click',function(){
+        var shippingid = this.dataset.shippingid;
+        var action = this.dataset.action;
+        cancleOrder(shippingid,action);
+    });
  }

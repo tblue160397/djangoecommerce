@@ -48,6 +48,7 @@ function addToCart(action, productid, size, quantity){
         .then((response) => {
           console.log(response);
           return response.json();
+          location.reload();
         })
         .then((data) => {
           console.log("data:", data);

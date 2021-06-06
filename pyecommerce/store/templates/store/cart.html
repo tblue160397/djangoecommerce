@@ -1,4 +1,9 @@
 {% extends 'store/main.html' %} {% load static %} {% block content %}
+{% if noitem%}
+  <script type="text/javascript">
+    window.alert("Vui lòng thêm 1 sản phẩm vào giỏ hàng")
+  </script>
+{%endif%}
 <div class="row">
   <div class="col-lg-12">
     <div class="box-element">
