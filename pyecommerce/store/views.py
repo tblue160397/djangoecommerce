@@ -11,10 +11,13 @@ import json
 # Create your views here.
 def store(request):
     if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, iscompleted=False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
+        if request.user.is_staff:
+            return redirect('/staff')
+        else:
+            customer = request.user.customer
+            order, created = Order.objects.get_or_create(customer=customer, iscompleted=False)
+            items = order.orderitem_set.all()
+            cartItems = order.get_cart_items
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_items': 0}
@@ -113,7 +116,7 @@ def customerprofile(request):
         user = request.user
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer,iscompleted = False)
-        all_shipping = ShippingInformation.objects.filter(customer=customer).select_related()
+        all_shipping = ShippingInformation.objects.filter(customer=customer).order_by('order_date', 'order_date').select_related()
         cartItems = order.get_cart_items
         count_order = all_shipping.count()
         payments = Payment.objects.filter(ispay=True, customer=customer)
@@ -257,6 +260,14 @@ def category(request, name):
     context = {'categoryitems': products, 'cartItems': cartItems, 'categoryname': name}
     return render(request, 'store/categoryitems.html', context)
 
+
+def category_order(request, category):
+    all_shipping_by_category = ShippingInformation.objects.filter(status=category).order_by('order_date',
+                                                                                 'order_date').select_related()
+    print(category)
+    context = {'all_shipping_by_category': all_shipping_by_category, 'category': category}
+    return render(request, 'store/staff/categoryorder.html', context)
+
 def addcomment(request):
     method = request.method
     customer = request.user.customer
@@ -305,11 +316,11 @@ def addtocart(request):
 def staff_home(request):
     user = request.user
     if user.is_authenticated:
-        context = {}
-        return render(request, 'store/staff/home.html', context)
+        all_new_shipping = ShippingInformation.objects.filter(status="New").order_by('order_date',
+                                                                                 'order_date').select_related()
+        context = {'all_new_shipping': all_new_shipping}
+        return render(request, 'store/staff/staffhome.html', context)
     else:
         form = AuthenticationForm()
         context = {'form': form}
         return render(request, "store/registration/login.html", context)
-    context1 = {"message": "hello"}
-    return render(request, 'store/staff/home.html', context1)
