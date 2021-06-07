@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9e9f313-8b89-4a43-a28c-b7e4afdc68f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/css/staff.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/templates/store/staff/categoryorder.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/templates/store/staff/staffhome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/templates/store/staff/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/templates/store/staff/categoryorder.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/staff/categoryorder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/templates/store/staff/staffhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/staff/staffhome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/views.py" afterDir="false" />
     </list>

@@ -324,3 +324,33 @@ def staff_home(request):
         form = AuthenticationForm()
         context = {'form': form}
         return render(request, "store/registration/login.html", context)
+
+
+def handler_order(request):
+    user = request.user
+    if user.is_authenticated and user.is_staff:
+        if request.method == "POST":
+            data = json.loads(request.body)
+            action = data['action']
+            shippingid = data['shippingid']
+            if action == "CANCEL_ORDER":
+                shipping = ShippingInformation.objects.get(id=shippingid)
+                shipping.status = "Cancel"
+                shipping.save()
+
+            if action == "CONFIRM_ORDER":
+                shipping = ShippingInformation.objects.get(id=shippingid)
+                shipping.status = "Delivered"
+                shipping.save()
+            if action == "PENDING":
+                shipping = ShippingInformation.objects.get(id=shippingid)
+                shipping.status = "Pending"
+                shipping.save()
+
+            if action == "OUT_DELIVERY_ORDER":
+                shipping = ShippingInformation.objects.get(id=shippingid)
+                shipping.status = "Out for delivery"
+                shipping.save()
+
+    else:
+        return redirect("login")

@@ -47,14 +47,14 @@
                 <td><button  style="color:aliceblue;background-color: cadetblue;" class="btn mb-0 col-sm-12">Out for delivery</button></td>
               {%endif%}
               {%if item.status == "New" or item.status == "Out for delivery"%}
-                <td><button class="btn mb-0 col-sm-12" style="color:aliceblue;background-color: coral;">Pending</button></td>
+                <td><button  data-shippingid="{{item.id}}" data-action="PENDING" name="pending" class="btn mb-0 col-sm-12" style="color:aliceblue;background-color: coral;">Pending</button></td>
               {%else%}
                 <td><button class="btn mb-0 col-sm-12" style="color:aliceblue;background-color: coral;" disabled>Pending</button></td>
               {%endif%}
               {%if item.status == "Cancel" or item.status == "Pending" or item.status == "Delivered"%}
                 <td><button  disabled clickable class="btn btn-success mb-0 col-sm-12">Confirm Delivered</button></td>
               {%else%}
-              <td><button  data-shippingid="{{item.id}}" data-action="CONFIRM_ORDER" name="confirmorder" class="btn btn-success mb-0 col-sm-12" >Confirm Delivered</button></td>
+                <td><button  data-shippingid="{{item.id}}" data-action="CONFIRM_ORDER" name="confirmorder" class="btn btn-success mb-0 col-sm-12" >Confirm Delivered</button></td>
               {%endif%}
             </tr>
           {%endfor%}
@@ -63,4 +63,5 @@
 </div>
 </div>
 </div>
+<script type="text/javascript" src="{% static 'js/staff.js' %}"></script>
 {% endblock content %}
