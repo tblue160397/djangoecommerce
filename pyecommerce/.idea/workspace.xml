@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a9e9f313-8b89-4a43-a28c-b7e4afdc68f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/detailProduct.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/detailProduct.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/templates/store/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/templates/store/detailproduct.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/detailproduct.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/templates/store/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/templates/store/registration/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/registration/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/templates/store/store.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/store.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/templates/store/staff/categoryorder.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/staff/categoryorder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/templates/store/staff/staffhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/staff/staffhome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/views.py" afterDir="false" />
     </list>
@@ -23,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="CSS FILE" />
         <option value="HTML File" />
       </list>
     </option>
@@ -47,12 +43,12 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\TaiLieuHocTap\pyecommerce\static\images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\TaiLieuHocTap\djangoecommerce\pyecommerce\static\js" />
       <recent name="E:\TaiLieuHocTap\pyecommerce\store\templates\store\registration" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\TaiLieuHocTap\pyecommerce\static\images" />
     </key>
   </component>
   <component name="RunDashboard">

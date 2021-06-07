@@ -25,10 +25,18 @@
       type="text/css"
       href="{% static 'css/profile.css' %}"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/staff.css' %}"
+    />
     <title>BabyShark Shopfs</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: black"
+    >
       <button
         class="navbar-toggler"
         type="button"
@@ -46,49 +54,6 @@
             <a class="nav-link navbar-brand" href="{% url 'store' %}"
               >BabyShark <span class="sr-only">(current)</span></a
             >
-          </li>
-          <li class="nav-item active">
-            <div class="dropdown">
-              <button
-                class="btn btn-success dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                style="border-radius: 5px"
-              >
-                Category
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a
-                  class="dropdown-item"
-                  data-action="filtercategory"
-                  href="{% url 'category' name='Crop Top' %}"
-                  >Crop Top</a
-                >
-                <a
-                  class="dropdown-item"
-                  href="{% url 'category' name='Pant' %}"
-                  >Pant</a
-                >
-                <a
-                  class="dropdown-item"
-                  href="{% url 'category' name='Jacket' %}"
-                  >Jacket</a
-                >
-                <a
-                  class="dropdown-item"
-                  href="{% url 'category' name='Shoes' %}"
-                  >Shoes</a
-                >
-                <a
-                class="dropdown-item"
-                href="{% url 'category' name='Sport equipment' %}"
-                >Sport equipment</a
-              >
-              </div>
-            </div>
           </li>
         </ul>
         <div
@@ -119,31 +84,25 @@
               >Sign In</a
             >
             {% endif %}
-            <a
-              href="{% url 'cart' %}"
-              class="form-inline my-2 my-lg-0 bg-success"
-              style="
-                border-radius: 5px;
-                margin: 0 5px;
-                padding: 4px 4px 2px 0px;
-              "
-            >
-              <img
-                id="cart-icon"
-                src="{% static 'images/shopping-bag.svg' %}"
-              />
-              <p
-                id="cart-total"
-                style="width: 15px; height: 15px; font-size: 0.7rem"
-              >
-                {{cartItems}}
-              </p>
             </a>
           </div>
         </div>
       </div>
     </nav>
-    <div class="container">{% block content %} {% endblock content %}</div>
+    <div class="col-md-4">
+      <div id="mySidenav" style="width: 250px" class="sidenav">
+        <a class="nav-link navbar-brand" href="{% url 'store' %}"
+          >BabyShark <span class="sr-only">(current)</span></a
+        >
+        <a href="{% url 'categoryorder' category='New' %}">New Order</a>
+        <a  href="{% url 'categoryorder' category='Delivered' %}">Delived Order</a>
+        <a href="{% url 'categoryorder' category='Cancel' %}">Cancel Order</a>
+        <a href="{% url 'categoryorder' category='Out for delivery' %}">Out for delivery</a>
+      </div>
+    </div>
+    <div class="container col-md-8">
+      {% block content %} {% endblock content %}
+    </div>
     <!--    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
@@ -160,15 +119,15 @@
     <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
     <script type="text/javascript">
-      var user = '{{request.user}}';
+      var user = "{{request.user}}";
       // console.log(user);
       function getToken(name) {
         var cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-          var cookies = document.cookie.split(';');
+        if (document.cookie && document.cookie !== "") {
+          var cookies = document.cookie.split(";");
           for (var i = 0; i < cookies.length; i++) {
             var cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === name + '=') {
+            if (cookie.substring(0, name.length + 1) === name + "=") {
               cookieValue = decodeURIComponent(
                 cookie.substring(name.length + 1)
               );
@@ -178,7 +137,7 @@
         }
         return cookieValue;
       }
-      var csrftoken = getToken('csrftoken');
+      var csrftoken = getToken("csrftoken");
     </script>
   </body>
 </html>
