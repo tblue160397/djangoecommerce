@@ -145,9 +145,10 @@ class ShippingInformation(models.Model):
 
     def __str__(self):
         return str(self.address) + str(self.city)
+
+
 class OrderReport(models.Model):
     content = models.TextField(null=True)
-    # product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
+    order = models.ForeignKey(Order, null=True, on_delete=models.SET_NULL)
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     created = models.DateTimeField(auto_now_add=True, null=True)
-    enable = models.BooleanField(default=True)

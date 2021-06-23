@@ -367,3 +367,14 @@ def handler_order(request):
 
     else:
         return redirect("login")
+
+def send_report(request):
+    user = request.user
+    if request.method == "POST":
+        customer = user.customer
+        data = json.loads(request.body)
+        messages = data['message']
+        orderid = data['orderid']
+        order = Order.objects.get(id=orderid)
+        OrderReport.objects.create(customer=customer, content=messages, order=order)
+    return JsonResponse('Item was added', safe=False)
