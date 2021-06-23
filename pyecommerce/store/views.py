@@ -240,7 +240,20 @@ def detailproduct(request, pk):
     context = {'product': product, 'cartItems': cartItems, 'comments': comments, 'tags': tags}
     return render(request, 'store/detailproduct.html', context)
 
-
+def detailorder(request, pk):
+    if request.user.is_authenticated:
+        user = request.user
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer,iscompleted = False)
+        all_shipping = ShippingInformation.objects.filter(customer=customer).order_by('order_date', 'order_date').select_related()
+        cartItems = order.get_cart_items
+        order = Order.objects.get(id=pk)
+        payments = Payment.objects.filter(ispay=True, customer=customer)
+        total_spend_money = sum(payment.get_total_price for payment in payments)
+    else:
+        return redirect("login")
+    context = {'user': user, 'cartItems': cartItems, 'total_spend_money': total_spend_money, "all_orders": all_shipping, "order": order}
+    return render(request, 'store/registration/orderdetail.html', context)
 def category(request, name):
     print(name)
     if request.user.is_authenticated:

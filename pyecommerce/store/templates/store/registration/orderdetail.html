@@ -1,0 +1,128 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+<style>
+  table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+table, th, td {
+	  border: 1px solid black;
+	}
+	table {
+	  border-spacing: 3px;
+	}
+</style>
+<!--Section: Block Content-->
+<section class="mb-5" style="background-color: aliceblue; padding: 10px 10px;">
+  <div class="col-sm-12">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="d-flex flex-column align-items-center text-center">
+          <h2>Orders Details {{order.id}}</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <td>Total Price</td>
+              <td>Quantity</td>
+              <td>Status</td>
+              <td>Delivery Date</td>
+              <td colspan="2">Action</td>
+              <td colspan="2">Report</td>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                {%for item in all_orders%}
+                    {%if item.order.id == order.id%}
+                  <tr>
+                    <td>{{item.order.get_cart_total}}</td>
+                    <td>{{item.order.get_cart_items}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.order_date}}</td>
+                    {%if item.status == "New" or item.status == "Pending"%}
+                      <td><button data-shippingid="{{item.id}}" data-action="CANCEL_ORDER" name="cancleorder"  style="color:aliceblue;background-color: chocolate;" class="btn mb-0 col-sm-12">Cancel</button></td>
+                    {%else%}
+                    <td><button class="btn mb-0 col-sm-12" style="color:aliceblue;background-color: chocolate;" disabled>Cancel</button></td>
+                    {%endif%}
+                    {%if item.status == "Cancel" or item.status == "Pending" or item.status == "Delivered"%}
+                      <td><button  disabled clickable class="btn btn-success mb-0 col-sm-12">Confirm Delivered</button></td>
+                    {%else%}
+                    <td><button  data-shippingid="{{item.id}}" data-action="CONFIRM_ORDER" name="confirmorder" class="btn btn-success mb-0 col-sm-12" >Confirm Delivered</button></td>
+                    {%endif%}
+                    <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">Product Report</button>
+                      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal2" data-whatever="@fat">Shipping Service Report</button></td>
+                  </tr>
+                  {%endif%}
+                {%endfor%}
+              </tr>
+          </tbody>
+        </table>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Product Report</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="Email" class="col-form-label">Email Contact:</label>
+                    <input type="text" class="form-control" id="Email"placeholder="Give us your email to receive our reply about your report">
+                  </div>
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label">Message:</label>
+                    <textarea class="form-control" id="message-text"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Shipping Service Report</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="Email" class="col-form-label">Email Contact:</label>
+                    <input type="text" class="form-control" id="Email" placeholder="Give us your email to receive our reply about your report">
+                  </div>
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label">Message:</label>
+                    <textarea class="form-control" id="message-text"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</section>
+<script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
+{% endblock content %}

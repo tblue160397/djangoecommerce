@@ -223,9 +223,10 @@ table, th, td {
                   <td>Order Code</td>
                   <td>Total Price</td>
                   <td>Quantity</td>
-                  <td>Status</td>
-                  <td>Delivery Date</td>
-                  <td colspan="2">Action</td>
+                  <!-- <td>Status</td> -->
+                  <td>See Details</td>
+                  <!-- <td>Delivery Date</td> -->
+                  <!-- <td colspan="3">Report</td> -->
                 </tr>
               </thead>
               <tbody>
@@ -234,9 +235,13 @@ table, th, td {
                     <td>{{item.order.id}}</td>
                     <td>{{item.order.get_cart_total}}</td>
                     <td>{{item.order.get_cart_items}}</td>
-                    <td>{{item.status}}</td>
-                    <td>{{item.order_date}}</td>
-                    {%if item.status == "New" or item.status == "Pending"%}
+                    <td><a type="button" class="btn btn-success" 
+                      name="detailorder"
+                      data-action="viewproduct"
+                      data-product="{{order.id}}"href="{% url 'orderdetail' pk=item.order.id %}">Click Here!</a></td>
+                    <!-- <td>{{item.status}}</td> -->
+                    <!-- <td>{{item.order_date}}</td> -->
+                    <!-- {%if item.status == "New" or item.status == "Pending"%}
                       <td><button data-shippingid="{{item.id}}" data-action="CANCEL_ORDER" name="cancleorder"  style="color:aliceblue;background-color: chocolate;" class="btn mb-0 col-sm-12">Cancel</button></td>
                     {%else%}
                     <td><button class="btn mb-0 col-sm-12" style="color:aliceblue;background-color: chocolate;" disabled>Cancel</button></td>
@@ -245,11 +250,17 @@ table, th, td {
                       <td><button  disabled clickable class="btn btn-success mb-0 col-sm-12">Confirm Delivered</button></td>
                     {%else%}
                     <td><button  data-shippingid="{{item.id}}" data-action="CONFIRM_ORDER" name="confirmorder" class="btn btn-success mb-0 col-sm-12" >Confirm Delivered</button></td>
-                    {%endif%}
+                    {%endif%} -->
+                    <!-- <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">Product Report</button>
+                      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal2" data-whatever="@fat">Shipping Service Report</button></td> -->
                   </tr>
                 {%endfor%}
               </tbody>
             </table>
+            
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
